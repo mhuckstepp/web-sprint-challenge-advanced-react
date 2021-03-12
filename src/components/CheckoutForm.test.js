@@ -6,6 +6,7 @@ import userEvent from "@testing-library/user-event";
 // Write up the two tests here and make sure they are testing what the title shows
 
 test("form header renders", () => {
+  //   render and find checkout form header in the document
   render(<CheckoutForm />);
   const header = screen.queryByText(/checkout form/i);
   expect(header).toBeInTheDocument();

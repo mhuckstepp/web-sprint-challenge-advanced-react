@@ -8,10 +8,17 @@ import useForm from "../hooks/useForm";
 const CheckoutForm = (props) => {
   const [
     values,
+    handleChanges,
     showSuccessMessage,
     setShowSuccessMessage,
-    handleChanges,
-  ] = useForm();
+  ] = useForm({
+    firstName: "",
+    lastName: "",
+    address: "",
+    city: "",
+    state: "",
+    zip: "",
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();

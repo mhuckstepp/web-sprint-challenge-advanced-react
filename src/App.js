@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
-import axios from 'axios';
+import useForm from "./hooks/useForm";
+import useLightMode from "./hooks/useDarkMode";
 
 import PlantList from "./components/PlantList";
 import ShoppingCart from "./components/ShoppingCart";
@@ -11,6 +12,8 @@ import "./App.css";
 function App() {
   // array of plants that have been added to the cart
   const [cart, setCart] = useState([]);
+  const [searchInp, handleChanges] = useForm("");
+  const [lightMode, toggleMode] = useLightMode();
 
   // add a plant to the cart
   const addToCart = (plant) => {
@@ -23,12 +26,31 @@ function App() {
   };
 
   return (
-    <div>
+    <div
+      style={
+        lightMode ? { background: "white", textShadow: "1px 1px black" } : null
+      }
+    >
       <Router>
-        <nav className="container">
+        <nav className={lightMode ? "container-light" : "container"}>
           <h1>
             React Plants <span role="img">🌿</span>
           </h1>
+          <label>
+            search plants:
+            <input
+              type="text"
+              name="name"
+              value={searchInp.name}
+              onChange={handleChanges}
+            />
+          </label>
+          <div className="dark-mode__toggle">
+            <div
+              onClick={toggleMode}
+              className={lightMode ? "toggle toggled" : "toggle"}
+            />
+          </div>
           <ul className="steps">
             <li>
               <NavLink exact to="/">
@@ -48,7 +70,9 @@ function App() {
         <Route
           exact
           path="/"
-          render={() => <PlantList addToCart={addToCart} />}
+          render={() => (
+            <PlantList addToCart={addToCart} searchInp={searchInp.name} />
+          )}
         />
         <Route
           path="/cart"

@@ -12,11 +12,23 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: white;
+}
+
+.container-light {
+  background: white;
+  color: #0e101c;
+  text-shadow: 1px 1px black;
+  max-width: 800px;
+  margin: 0 auto;
+  border-bottom: 1px solid #cf0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 h1 {
   font-weight: 100;
-  color: white;
   text-align: center;
   font-size: 2rem;
 }
@@ -250,4 +262,27 @@ pre {
 .active {
   color: #0e101c;
   border-bottom: 2px solid !important;
+}
+
+.dark-mode__toggle {
+  background: papayawhip;
+  border-radius: 50px;
+  border: 1px solid black;
+  height: 20px;
+  position: relative;
+  width: 40px;
+}
+
+.toggle {
+  background: #f68819;
+  border-radius: 50px;
+  height: 18px;
+  left: 0;
+  position: absolute;
+  transition: 0.2s;
+  width: 20px;
+}
+
+.toggled {
+  left: 18px;
 }
